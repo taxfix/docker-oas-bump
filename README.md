@@ -10,7 +10,6 @@ Make sure to define `BUMP_DOC_ID` and `BUMP_TOKEN` as env variable in circleCI f
 1) Add a new job
 ```yaml
 jobs:
-  # other steps like build
   publish-api-documentation:
     docker:
       - image: taxfix/oas-bump:latest

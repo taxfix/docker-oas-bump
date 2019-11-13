@@ -22,6 +22,19 @@ jobs:
 ```
 
 2) Add this job to the workflow
+```yaml
+workflows:
+  version: 2
+    workflow-name:
+      jobs:
+        - publish-api-documentation:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+```
 
 #### Version 2.1 - with orbs
 Coming Soon

@@ -1,10 +1,5 @@
 #!/bin/sh
-# Workaround for CircleCI to get it work
-# Somehow its need to be run once, before it actually works,
-# otherwise it fails with non parseable json
-oas generate > /dev/null 2>&1
-
-oas generate | \
+swagger-inline "src/**/*.ts" -b swagger.json -f ".json" | \
 strip-bom | \
 jqf 'file => ({ "definition": JSON.stringify(file), "specification": "openapi/v3/json" })' | \
 curl \

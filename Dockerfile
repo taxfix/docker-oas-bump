@@ -5,7 +5,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 RUN apk add --no-cache curl
-RUN npm install oas jqf strip-bom-cli -g
+RUN npm install swagger-inline@3 jqf strip-bom-cli -g
 
 COPY ./generate-publish.sh .
 

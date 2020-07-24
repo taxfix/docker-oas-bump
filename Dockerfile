@@ -9,4 +9,4 @@ RUN npm install swagger-inline@3 jqf strip-bom-cli -g
 
 COPY ./generate-publish.sh .
 
-ENTRYPOINT ["./generate-publish.sh"]
+# ENTRYPOINT ["./generate-publish.sh"]

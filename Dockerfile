@@ -1,5 +1,5 @@
 FROM node:12.13-alpine
-LABEL com.circleci.preserve-entrypoint=true
+# LABEL com.circleci.preserve-entrypoint=true
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8

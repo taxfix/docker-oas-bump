@@ -1,5 +1,5 @@
 #!/bin/sh
-swagger-inline "src/**/*.(ts|js)" -b swagger.json -f ".json" | \
+swagger-inline "/opt/app/src/**/*.(ts|js)" -b swagger.json -f ".json" | \
 strip-bom | \
 jqf 'file => ({ "definition": JSON.stringify(file), "specification": "openapi/v3/json" })' | \
 curl \

@@ -2,10 +2,22 @@ Simple docker image to be used, to create and upload openAPI documentation to bu
 
 ## How to use
 
-### Used for CI (CircleCI)
-Make sure to define `BUMP_DOC_ID` and `BUMP_TOKEN` as env variable in circleCI for that repository.
+1. Validate
 
-#### Version 2 - without orbs
+```
+docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /validate.sh
+```
+
+2. Publish documentation
+
+```
+docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /generate-publish.sh
+```
+
+### Used for CI
+Make sure to define `BUMP_DOC_ID` and `BUMP_TOKEN` as env variables.
+
+#### CircleCI
 
 1) Add a new job
 ```yaml
@@ -35,30 +47,37 @@ workflows:
                 - master
 ```
 
-#### Version 2.1 - with orbs
-Coming Soon
+#### GitLab
 
-### Used as a base image
-Just make sure you copy or mount your files with the inline documentation to the image.
-Then build and simply run it. The script gets executed as the entrypoint of that image.
-Don't forgot to add `BUMP_DOC_ID` and `BUMP_TOKEN` as environment variables to run.
+1. Validate
 
-1) Simple Dockerfile
-```Dockerfile
-FROM taxfix/oas-bump:latest
-
-WORKDIR /
-
-# Make sure you copy all the files with the inline documentation here
-COPY ./ .
+```
+validate-docs:
+  stage: build-and-push
+  image: taxfix/oas-bump:latest
+  before_script:
+    - ''
+  script:
+    - /validate.sh
+  environment:
+    name: integration
+  allow_failure: false
 ```
 
-2) Build it
-```shell
-docker build -t taxfix/oas-bump-app .
-```
+2. Publish
 
-3) Run it
-```shell
-docker run -e BUMP_DOC_TOKEN=${BUMP_DOC_TOKEN} -e BUMP_TOKEN=${BUMP_TOKEN} taxfix/oas-bump-app
+```
+publish-specs:
+  stage: build-and-push
+  image: taxfix/oas-bump:latest
+  before_script:
+    - ''
+  script:
+    - /generate-publish.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: always
+  environment:
+    name: integration
+  allow_failure: false
 ```

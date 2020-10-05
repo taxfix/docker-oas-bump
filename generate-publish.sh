@@ -1,9 +1,9 @@
 #!/bin/sh
-if [ ! -f "/opt/app/swagger.json" ]; then
+if [ ! -f "$PWD/swagger.json" ]; then
     echo "specs not found"
     exit 0
 fi
-swagger-inline "/opt/app/src/**/*.(ts|js)" -b swagger.json -f ".json" | \
+swagger-inline "$PWD/src/**/*.(py|ts|js)" "$PWD/*.(py|ts|js)" -b "$PWD/swagger.json" -f ".json" | \
 strip-bom | \
 jqf 'file => ({ "definition": JSON.stringify(file), "specification": "openapi/v3/json" })' | \
 curl \

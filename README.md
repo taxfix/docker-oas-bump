@@ -14,6 +14,13 @@ docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /validate.sh
 docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /generate-publish.sh
 ```
 
+3. Generate documentation using swagger-inline (without bump upload)
+
+```
+docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /generate.sh
+```
+
+
 ### Used for CI
 Make sure to define `BUMP_DOC_ID` and `BUMP_TOKEN` as env variables.
 

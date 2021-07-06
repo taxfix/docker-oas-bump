@@ -7,6 +7,7 @@ RUN apk add --no-cache curl
 RUN npm install swagger-inline@3 jqf strip-bom-cli @apidevtools/swagger-cli -g
 
 COPY ./generate-publish.sh .
+COPY ./generate.sh .
 COPY ./validate.sh .
 
 WORKDIR /opt/app

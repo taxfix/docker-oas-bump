@@ -81,3 +81,12 @@ publish-specs:
     name: integration
   allow_failure: false
 ```
+
+### Optional features
+
+
+Generate documentation using swagger-inline (without bump upload)
+
+```
+docker run -ti --rm -v$(pwd):/opt/app taxfix/oas-bump /generate.sh
+```

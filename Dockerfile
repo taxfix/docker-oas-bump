@@ -10,4 +10,6 @@ COPY ./generate-publish.sh .
 COPY ./generate.sh .
 COPY ./validate.sh .
 
+RUN chmod +x generate-publish.sh generate.sh validate.sh
+
 WORKDIR /opt/app

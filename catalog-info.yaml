@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: docker-oas-bump
+  description: ""
+  annotations: []
+spec:
+  type: other
+  lifecycle: production
+  domain: tech-foundation
+  system: dev-tools-infra
+  owner: tie
+relations: []

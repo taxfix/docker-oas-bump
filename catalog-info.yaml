@@ -5,7 +5,7 @@ metadata:
   description: ""
 spec:
   type: other
-  lifecycle: production
+  lifecycle: deprecated
   domain: tech-foundation
   system: dev-tools-infra
-  owner: tie
+  owner: architecture
